@@ -7,7 +7,7 @@ export const faunaDbGraphQlEndpoint =
 export const faunaGraphqlFetchMethodAndHeaders = {
   method: 'POST',
   headers: {
-    Authorization: `Bearer ${process.env.FAUNA_SECRET_KEY}`,
+    Authorization: `Bearer ${process.env.GATSBY_FAUNA_SECRET_KEY}`,
     'Content-type': 'application/json',
     Accept: 'application/json',
   },
