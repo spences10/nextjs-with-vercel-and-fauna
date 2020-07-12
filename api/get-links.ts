@@ -30,9 +30,7 @@ export default async (_req: NowRequest, res: NowResponse) => {
     ...faunaGraphqlFetchMethodAndHeaders,
     body: JSON.stringify({
       query: fetchAllLinks,
-      // variables: {
-      //   customerId,
-      // },
+      variables: {},
     }),
   })
 

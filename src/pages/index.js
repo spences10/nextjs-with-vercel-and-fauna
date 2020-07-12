@@ -1,30 +1,67 @@
-import { Link } from 'gatsby'
-import React, { useEffect, useState } from 'react'
-import Image from '../components/image'
+import React from 'react'
+import { useQuery } from 'react-query'
+import { ReactQueryDevtools } from 'react-query-devtools'
 import Layout from '../components/layout'
-import SEO from '../components/seo'
+
+const Dump = props => (
+  <div
+    style={{
+      fontSize: 20,
+      border: '1px solid #efefef',
+      padding: 10,
+      background: 'white',
+    }}
+  >
+    {Object.entries(props).map(([key, val]) => (
+      <pre key={key}>
+        <strong style={{ color: 'white', background: 'red' }}>
+          {key} 💩
+        </strong>
+        {JSON.stringify(val, '', ' ')}
+      </pre>
+    ))}
+  </div>
+)
 
 export default () => {
-  const [date, setDate] = useState(null)
-  useEffect(() => {
-    async function getDate() {
-      const res = await fetch('/api/date')
-      const newDate = await res.text()
-      setDate(newDate)
-    }
-    getDate()
-  }, [])
+  const fetchData = async () => {
+    const response = await fetch('/api/get-links')
+    const data = await response.json()
+    return data
+  }
+
+  const { status, data, error } = useQuery('latest', fetchData)
+  if (status === 'loading')
+    return (
+      <Layout>
+        <div>Loading...</div>
+      </Layout>
+    )
+  if (status === 'error')
+    return (
+      <Layout>
+        <div>Error! {JSON.stringify(error)}</div>
+      </Layout>
+    )
+
+  const { data: linksData } = data.allLinks
   return (
     <Layout>
-      <SEO title="Home" />
-      <h1>{date}</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <Image />
-      </div>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <h1>Hello</h1>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      {linksData.map(l => {
+        console.log('=====================')
+        console.log(l)
+        console.log('=====================')
+        return (
+          <>
+            <p>{l.name}</p>
+            <p>{l.url}</p>
+            <p>{l.description}</p>
+          </>
+        )
+      })}
     </Layout>
   )
 }
