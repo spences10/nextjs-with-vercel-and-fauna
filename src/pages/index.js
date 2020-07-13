@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { ReactQueryDevtools } from 'react-query-devtools'
+import { GET_LINKS } from '../../api/queries'
 import Layout from '../components/layout'
 
 const Dump = props => (
@@ -25,7 +26,9 @@ const Dump = props => (
 
 export default () => {
   const fetchData = async () => {
-    const response = await fetch('/api/get-links')
+    const response = await fetch(
+      `/api/get-links?queryName=${GET_LINKS}&queryMethod=POST`
+    )
     const data = await response.json()
     return data
   }
