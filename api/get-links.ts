@@ -4,15 +4,13 @@ import fetch from 'isomorphic-fetch'
 export const faunaDbGraphQlEndpoint =
   'https://graphql.fauna.com/graphql'
 
-// export const faunaGraphqlFetchMethodAndHeaders = {}
-
 export default async (req: NowRequest, res: NowResponse) => {
   let { queryName, queryMethod } = req.query
 
   const faunaResponse = await fetch(faunaDbGraphQlEndpoint, {
     method: queryMethod,
     headers: {
-      Authorization: `Bearer ${process.env.GATSBY_FAUNA_SECRET_KEY}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY}`,
       'Content-type': 'application/json',
       Accept: 'application/json',
     },

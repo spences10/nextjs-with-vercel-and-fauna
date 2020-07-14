@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { ReactQueryDevtools } from 'react-query-devtools'
-import { GET_LINKS } from '../../api/queries'
+import { READ_LINKS } from '../../api/util/queries'
 import Layout from '../components/layout'
 
 const Dump = props => (
@@ -26,8 +26,16 @@ const Dump = props => (
 
 export default () => {
   const fetchData = async () => {
+    let name = `Linky Link`
+    let url = `https://sasaljjdfks.com`
+    let description = `Linky Link Description`
+    const body = { name, url, description }
+    // const response = await fetch(`/api/create-link`, {
+    //   method: `POST`,
+    //   body: JSON.stringify(body),
+    // })
     const response = await fetch(
-      `/api/get-links?queryName=${GET_LINKS}&queryMethod=POST`
+      `/api/get-links?queryName=${READ_LINKS}&queryMethod=POST`
     )
     const data = await response.json()
     return data
