@@ -1,4 +1,18 @@
-export const GET_LINKS = `
+export const CREATE_LINK = `
+mutation($name: String!, $url: String!, $description: String!) {
+  createLink(
+    data: { name: $name, url: $url, description: $description, archived: false }
+    ) {
+      name
+      _id
+      url
+      description
+      archived
+    }
+  }
+`
+
+export const READ_LINKS = `
   query {
     allLinks {
       data {
@@ -8,20 +22,6 @@ export const GET_LINKS = `
         description
         archived
       }
-    }
-  }
-`
-
-export const CREATE_LINK = `
-  mutation($name: String!, $url: String!, $description: String!) {
-    createLink(
-      data: { name: $name, url: $url, description: $description, archived: false }
-    ) {
-      name
-      _id
-      url
-      description
-      archived
     }
   }
 `
