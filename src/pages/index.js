@@ -1,7 +1,6 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { ReactQueryDevtools } from 'react-query-devtools'
-import { READ_LINKS } from '../../api/util/queries'
 import Layout from '../components/layout'
 
 const Dump = props => (
@@ -34,9 +33,10 @@ export default () => {
     //   method: `POST`,
     //   body: JSON.stringify(body),
     // })
-    const response = await fetch(
-      `/api/get-links?queryName=${READ_LINKS}&queryMethod=POST`
-    )
+    const response = await fetch(`/api/get-all-links`)
+    // const response = await fetch(
+    //   `/api/get-links?queryName=${READ_LINKS}&queryMethod=POST`
+    // )
     const data = await response.json()
     return data
   }
