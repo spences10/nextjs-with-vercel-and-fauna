@@ -44,16 +44,18 @@ export default () => {
       <ReactQueryDevtools initialIsOpen={false} />
       <h1>Hello</h1>
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-      <LinkForm refreshLinks={fetchData} />
-      {linksData.map(l => {
-        return (
-          <li key={l._id}>
-            <p>{l.name}</p>
-            <p>{l.url}</p>
-            <p>{l.description}</p>
-          </li>
-        )
-      })}
+      <LinkForm />
+      <ol>
+        {linksData.map(l => {
+          return (
+            <li key={l._id}>
+              <p>{l.name}</p>
+              <p>{l.url}</p>
+              <p>{l.description}</p>
+            </li>
+          )
+        })}
+      </ol>
     </Layout>
   )
 }
