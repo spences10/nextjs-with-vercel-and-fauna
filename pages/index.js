@@ -1,65 +1,60 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from 'react'
+import { useQuery } from 'react-query'
+import { ReactQueryDevtools } from 'react-query-devtools'
+import LinkForm from '../components/link-form'
 
-export default function Home() {
+export default function HomePage() {
+  const fetchData = async () => {
+    // let name = `Linky Link`
+    // let url = `https://sasaljjdfks.com`
+    // let description = `Linky Link Description`
+    // const body = { name, url, description }
+    // const response = await fetch(`/api/create-link`, {
+    //   method: `POST`,
+    //   body: JSON.stringify(body),
+    // })
+    // const response = await fetch(`/api/get-all-links`)
+    // const response = await fetch(
+    //   `/api/get-links?queryName=${READ_LINKS}&queryMethod=POST`
+    // )
+
+    const response = await fetch(`/api/get-all-links`)
+    const data = await response.json()
+    return data
+  }
+
+  const { status, data, error } = useQuery('latest', fetchData)
+  if (status === 'loading')
+    return (
+      <>
+        <div>Loading...</div>
+      </>
+    )
+  if (status === 'error')
+    return (
+      <>
+        <div>Error! {JSON.stringify(error)}</div>
+      </>
+    )
+
+  const { data: linksData } = data.allLinks
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+    <>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <h1>Hello</h1>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      <LinkForm />
+      <ol>
+        {linksData.map(l => {
+          return (
+            <li key={l._id}>
+              <p>{l.name}</p>
+              <p>{l.url}</p>
+              <p>{l.description}</p>
+            </li>
+          )
+        })}
+      </ol>
+    </>
   )
 }
