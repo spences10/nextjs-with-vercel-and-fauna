@@ -1,10 +1,9 @@
-import { NowRequest, NowResponse } from '@vercel/node'
 import fetch from 'isomorphic-fetch'
 
 export const faunaDbGraphQlEndpoint =
   'https://graphql.fauna.com/graphql'
 
-export default async (req: NowRequest, res: NowResponse) => {
+export default async (req, res) => {
   let { queryName, queryMethod } = req.query
 
   const faunaResponse = await fetch(faunaDbGraphQlEndpoint, {
