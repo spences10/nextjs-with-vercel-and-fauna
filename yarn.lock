@@ -2950,7 +2950,7 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
-isomorphic-fetch@^2.2.1:
+isomorphic-fetch@2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   integrity sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk=
@@ -3933,14 +3933,14 @@ react-is@16.13.1, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-query-devtools@^2.4.7:
+react-query-devtools@2.4.7:
   version "2.4.7"
   resolved "https://registry.yarnpkg.com/react-query-devtools/-/react-query-devtools-2.4.7.tgz#afc34d18d3e37be5c73fa143da8db803ae74cc4c"
   integrity sha512-rjGTtiIvku8wHL2yQiItkFFAeI1bCfPuLrh9V2LzJN+vz7pFA/XDbF0ksBFZnUS/sv0sSNZtmudhrpcGmZDWEg==
   dependencies:
     match-sorter "^4.1.0"
 
-react-query@^2.17.2:
+react-query@2.17.2:
   version "2.17.2"
   resolved "https://registry.yarnpkg.com/react-query/-/react-query-2.17.2.tgz#d9fd7299eb7bef388ffe8c314c5fa84928ca7af0"
   integrity sha512-VB3SU9rJQkumEJQF3z0ZzPGdxPz6WEs0Q5CB4gEk/jUp3u3vWd7di6LJJ7gD0uAZs+yiooXbtKNTGnLg9NPrew==
