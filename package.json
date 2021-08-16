@@ -10,7 +10,7 @@
     "next": "9.5.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-query": "2.17.2",
+    "react-query": "2.26.4",
     "react-query-devtools": "2.4.7"
   },
   "devDependencies": {
